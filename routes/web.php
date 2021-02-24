@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,10 @@ Route::get('/', function () {
 });
 
 Route::get('contact', [ContactController::class, 'index'])->middleware('check_age');
+
+//category controller
+Route::get('category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+Route::post('category/add', [CategoryController::class, 'AddCAt'])->name('store.category');
 
 
 
