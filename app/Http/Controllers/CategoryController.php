@@ -12,8 +12,15 @@ class CategoryController extends Controller
 {
     public function AllCat(){
 
-        //$categories = Category::all()->paginate(5);
-        $categories = DB::table('categories')->latest()->paginate(5);
+        // $categories = DB::table('categories')
+        //                      ->join('users','categories.user_id','users.id')
+        //                      ->select('categories.*','users.name')
+        //                      ->latest()->paginate(5);   //using Query Builder 
+
+        // dd($categories);                    
+
+        $categories = Category::latest()->paginate(5); //Elq ORM
+        // $categories = DB::table('categories')->latest()->paginate(5);  //query builder
         return view('admin.category.index',compact('categories'));
     }
 
@@ -26,6 +33,7 @@ class CategoryController extends Controller
         [
             'category_name.required' => 'Please input Category name',
         ]);
+        
 
        // dd($validated);
 
@@ -40,10 +48,19 @@ class CategoryController extends Controller
     $category->user_id = Auth::user() ->id;
     
     $category->save();
-
+    
     //dd($category);
   
        return Redirect()->back()->with('success' , 'Category Added Successfully');
         
+    }
+
+    public function Edit($id){
+        $categories = Category::find($id); //dpecific One ID data 
+        return view('admin.category.edit');
+    }
+
+    public function Detele(){
+        return "Cat is deleated";
     }
 }

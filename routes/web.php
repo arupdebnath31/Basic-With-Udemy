@@ -25,6 +25,9 @@ Route::get('contact', [ContactController::class, 'index'])->middleware('check_ag
 //category controller
 Route::get('category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('category/add', [CategoryController::class, 'AddCAt'])->name('store.category');
+Route::post('category/edit/{id}', [CategoryController::class, 'Edit'])->name('edit.category');
+Route::delete('category/delete/{id}', [CategoryController::class, 'Delete'])->name('delete.category');
+
 
 
 

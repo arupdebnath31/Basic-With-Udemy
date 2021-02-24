@@ -24,9 +24,9 @@
             
          @if(Session('success'))
          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <span aria-hidden="true">$times;</span>
+            <strong>Hey {{Auth::user()->name}} <br> </strong> Category Added to the list...!!!!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+            <span aria-hidden="true"> $times; </span>
         </div>
 
         @endif  
@@ -41,6 +41,7 @@
                     <th scope="col">Category-Name</th>
                     <th scope="col">User</th>
                     <th scope="col">Created_At</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,8 +52,12 @@
             <tr>
                 <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
                 <td>{{$cat->category_name}}</td>
-                <td>{{$cat->user_id}}</td>
+                <td>{{$cat->user->name}}</td>  
                 <td>{{$cat->created_at}}</td>
+                <td>
+                    <a href="{{url('/category/edit/'.$cat->id)}}" class="btn btn-info">Edit</a>
+                    <a href="{{url('/category/delete/'.$cat->id)}}" class="btn btn-danger">Delete</a>
+                </td>
             </tr> 
         
             @endforeach   
