@@ -60,10 +60,6 @@ class CategoryController extends Controller
         return view('admin.category.edit' , compact('categories'));
     }
 
-    public function Detele(){
-        return "Cat is deleated";
-    }
-
     public function update(Request $request , $id){
         $update = Category::find($id)->update(
             [

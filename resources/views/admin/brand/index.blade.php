@@ -44,7 +44,7 @@
                 <tr>
                     <th scope="row">{{$brands->firstItem()+$loop->index}}</th>
                     <td>{{$brand->brand_name}}</td>
-                    <td><img src="" alt=""></td>
+                    <td><img src="/{{$brand->brand_image}}" alt="Brand Image" style="height: 40px; width: 70px; "></td>
                     <td>{{$brand->created_at}}</td>
                     <td>
                         <a href="{{url('/brand/edit/'.$brand->id)}}" class="btn btn-info">Edit</a>

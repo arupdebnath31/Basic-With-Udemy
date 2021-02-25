@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Console\DumpCommand;
@@ -30,22 +31,26 @@ class BrandController extends Controller
             'brand_name.requires.image' => 'please insert a image',
         ]);
 
+    $brand_image = $request->file('brand_image'); //request image captured by the $brand_image
+    $name_gen = hexdec(uniqid());
+    $image_extension = strtolower($brand_image -> getClientOriginalExtension());
+    $image_name = $name_gen.'.'.$image_extension;
+    $up_location = 'image/brand/';
+    $last_img = $up_location.$image_name;
+    $brand_image->move($up_location,$image_name);
 
+    Brand::insert(
+        [
+            'brand_name' => $request->brand_name,
+            'brand_image' => $last_img,
+            'created_at'  => Carbon::now(),
+        ]);
 
-    //     $brand = new Brand();
-    //     $brand->brand_name = $request->brand_name;
-    //     //$brand->user_id = Auth::user() ->id;
-        
-    //     $brand->save();
-    
-    // //dd($category);
-
-
-    $brand_image = $request->file('brand_image');
-
-    
-
-  
        return Redirect()->back()->with('success' , 'Brand Added Successfully');
+    }
+
+
+    public function Edit($id){
+        return view('admin.brand.edit');
     }
 }
