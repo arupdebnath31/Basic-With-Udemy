@@ -33,6 +33,8 @@ Route::get('category/delete/{id}', [CategoryController::class, 'delete'])->name(
 //Brand Controller Routes are listed here\
 
 Route::get('brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+Route::post('brand/add', [BrandController::class, 'StoreBrand'])->name('store.brand');
+
 
 
 
