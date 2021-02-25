@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BrandController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,13 @@ Route::get('contact', [ContactController::class, 'index'])->middleware('check_ag
 //category controller
 Route::get('category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('category/add', [CategoryController::class, 'AddCAt'])->name('store.category');
-Route::post('category/edit/{id}', [CategoryController::class, 'Edit'])->name('edit.category');
-Route::delete('category/delete/{id}', [CategoryController::class, 'Delete'])->name('delete.category');
+Route::get('category/edit/{id}', [CategoryController::class, 'Edit'])->name('edit.category');
+Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('update.category');
+Route::get('category/delete/{id}', [CategoryController::class, 'delete'])->name('delete.category');
 
+//Brand Controller Routes are listed here\
+
+Route::get('brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 
 
 

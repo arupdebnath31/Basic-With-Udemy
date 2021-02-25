@@ -22,15 +22,9 @@
             <div class="card-body">
 
             
-         @if(Session('success'))
-         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hey {{Auth::user()->name}} <br> </strong> Category Added to the list...!!!!</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
-            <span aria-hidden="true"> $times; </span>
-        </div>
+                @include('flash-message')   {{-- Flash meddage is a another file which has all the error message stored just @include here tp use those prewritten error message  --}}
 
-        @endif  
-         
+                
            
 
             <div class="card-header"> All Category</div>

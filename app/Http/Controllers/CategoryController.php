@@ -56,11 +56,26 @@ class CategoryController extends Controller
     }
 
     public function Edit($id){
-        $categories = Category::find($id); //dpecific One ID data 
-        return view('admin.category.edit');
+        $categories = Category::find($id); //specific One ID data 
+        return view('admin.category.edit' , compact('categories'));
     }
 
     public function Detele(){
         return "Cat is deleated";
+    }
+
+    public function update(Request $request , $id){
+        $update = Category::find($id)->update(
+            [
+                'category_name' => $request->category_name,
+                'user_id' => Auth::user()->id,
+            ]
+        );
+        return Redirect()->route('all.category')->with('success' , 'Category Updated Successfully');
+    }
+    public function delete($id){
+
+        Category::destroy($id);
+        return Redirect()->route('all.category')->with('warning' , 'Category Deleted Successfully');
     }
 }
