@@ -47,18 +47,19 @@
                     <td><img src="/{{$brand->brand_image}}" alt="Brand Image" style="height: 40px; width: 70px; "></td>
                     <td>{{$brand->created_at}}</td>
                     <td>
-                        <a href="{{url('/brand/edit/'.$brand->id)}}" class="btn btn-info">Edit</a>
-                        <a href="{{url('/brand/delete/'.$brand->id)}}" class="btn btn-danger">Delete</a>
+                         <a href="{{url('/brand/edit/'.$brand->id)}}" class="btn btn-info" >Edit</a>
+                         <a href="{{url('/brand/delete/'.$brand->id)}}" onclick="return confirm('Are You sure to delete')" class="btn btn-danger">Delete</a>
                     </td>
                 </tr> 
             
                 @endforeach 
   
          
-        
+                {{--onclick="return confirm('Are You sure to delete')"--}}
          
         </tbody>
         </table>
+
         {{ $brands->links() }}
        
     </div>
@@ -102,3 +103,7 @@
     </div>
 </div>
 </x-app-layout>
+
+
+
+</script>

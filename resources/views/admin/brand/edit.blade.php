@@ -18,18 +18,24 @@
             <div class="card-body">
 
            
-            <form action="{{url('brand/update/')}} " method="POST">
+            <form action="{{url('brand/update/'.$brands->id)}} " method="POST" enctype="multipart/form-data">
             @csrf
+            
+            <input type="hidden" name="old_image" value="{{ $brands->brand_image }}">
+
                 <div class="mb-3">
-                    <label for="Categoryname"  class="form-label" placeholder=" Enter category name">Brand Name</label>
-                    <input type="text" class="form-control" placeholder=" Enter category name" name="category_name" id="categoryname" value="">
+                    <label for="brand_name"  class="form-label" >Brand Name</label>
+                    <input type="text" class="form-control" placeholder=" Enter Brand name" name="brand_name" id="categoryname" >
                 </div>
 
                 <div class="mb-3">
-                    <label for="Categoryname"  class="form-label" placeholder=" Enter category name">Brand Image</label>
+                    <label for="brand_image"  class="form-label">Brand Image</label>
                     <input type="file" class="form-control" placeholder=" Upload image" name="brand_image" id="categoryname">
                 </div>
-                
+                <div class="form-group">
+                    <img src="{{asset($brands->brand_image)}}" alt="" style="width: 400px; height: 200px;">
+                </div>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

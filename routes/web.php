@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,10 +39,8 @@ Route::get('category/delete/{id}', [CategoryController::class, 'delete'])->name(
 Route::get('brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 Route::post('brand/add', [BrandController::class, 'StoreBrand'])->name('store.brand');
 Route::get('brand/edit/{id}', [BrandController::class, 'Edit'])->name('edit.brand');
-
-
-
-
+Route::post('brand/update/{id}', [BrandController::class, 'update'])->name('update.brand');
+Route::get('brand/delete/{id}', [BrandController::class, 'delete'])->name('update.brand');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
